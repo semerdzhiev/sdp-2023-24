@@ -155,8 +155,12 @@ SCENARIO("FixedSizeArray::at() throws if the index is not valid", "[FixedSizeArr
     FixedSizeArray<size_t> arr(5);
 
     WHEN("We try to access an element outside of the bounds of the array") {
-      THEN("An exception is thrown") {
+      THEN("at() throws an exception") {
         REQUIRE_THROWS_AS(arr.at(arr.size()), std::out_of_range);
+      }
+      THEN("at() const throws an exception") {
+        const FixedSizeArray<size_t>& cref = arr;
+        REQUIRE_THROWS_AS(cref.at(arr.size()), std::out_of_range);
       }
     }
   }
@@ -172,18 +176,18 @@ public:
   FixedSizeArray<size_t> arr = FixedSizeArray<size_t>(initialSize);
   const FixedSizeArray<size_t>& cref = arr; /// Constant reference to the array
 
-  /// Fill the array with all numbers in [Start, End], ordered ascendingly
+  /// Fill the array with all numbers in [Start, End] in ascending order
   ArrayOfNumbersFixture()
   {
     for (size_t i = 0; i < initialSize; i++)
       arr[i] = Start + i;
   }
 
-  /// Check whether the array contains all numbers in [Start, End], ordered ascendingly
+  /// Check whether the array contains all numbers in [Start, End] in ascending order
   bool arrayContainsAllNumbersBetween(size_t begin, size_t end) const
   {
     const size_t size = end - begin + 1;
-    
+
     if (arr.size() != size)
       return false;
 
@@ -360,7 +364,7 @@ SCENARIO("FixedSizeArray: The contents of two arrays can be swapped", "[FixedSiz
   {
     ArrayOfNumbersFixture<1, 5> fxLong;
     ArrayOfNumbersFixture<6, 8> fxShort;
-   
+
     const size_t* bufferLong = fxLong.arr.data();
     const size_t* bufferShort = fxShort.arr.data();
 
@@ -504,7 +508,7 @@ SCENARIO("FixedSizeArray(FixedSizeArray&&) correctly moves the contents of anoth
   }
 }
 
-SCENARIO("FixedSizeArray::operator=(FixedSizeArray&&) correctly moves to an ampty array", "[FixedSizeArray]")
+SCENARIO("FixedSizeArray::operator=(FixedSizeArray&&) correctly moves to an empty array", "[FixedSizeArray]")
 {
   GIVEN("A non-empty source array with a buffer at a given address")
   {
