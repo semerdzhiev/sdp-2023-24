@@ -25,7 +25,7 @@ TEST_CASE("no students")
 
 TEST_CASE("no space in bar")
 {
-	std::stringstream empty { "0 1 0\n17 0 Fraud 3" };
+	std::stringstream empty { "0 1 1\n17 0 Fraud 3" };
 	std::stringstream output;
 	REQUIRE_THROWS_AS(simulate_bar(empty, output), std::runtime_error);
 }
