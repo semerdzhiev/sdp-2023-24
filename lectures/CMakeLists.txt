@@ -110,6 +110,9 @@ endif()
 #
 
 # A collection of commonly used utilities
+add_subdirectory("triangle")
+
+# A collection of commonly used utilities
 add_subdirectory("utils")
 
 # Array Walking example
