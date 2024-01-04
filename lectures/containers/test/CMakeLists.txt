@@ -13,6 +13,7 @@ target_sources(
 	PRIVATE
 		"Test-DynamicArray.cpp"
 		"Test-FixedSizeArray.cpp"
+		"Test-HashTable.cpp"
 		"Test-ListNode.cpp"
 		"Test-Tree.cpp"
 		"Test-TreeNode.cpp"

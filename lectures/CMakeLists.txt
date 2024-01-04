@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.24)
 
 project ("Simple CMake Template" VERSION 1.3)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #
@@ -109,7 +109,7 @@ endif()
 # Modules
 #
 
-# A collection of commonly used utilities
+# A simple unit test example
 add_subdirectory("triangle")
 
 # A collection of commonly used utilities
@@ -120,3 +120,6 @@ add_subdirectory("array-walking")
 
 # Conainers library
 add_subdirectory("containers")
+
+# Benchmarks for the has tables
+add_subdirectory("hash-benchmark")
