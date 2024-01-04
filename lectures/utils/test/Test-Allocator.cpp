@@ -70,3 +70,31 @@ TEST_CASE("DebugAllocator::release() does nothing when releasing null", "[alloca
     CHECK_NOTHROW(da.release(ptr));
 }
 
+TEST_CASE("DebugAllocator::failAfter() can be used to set the failAfter counter", "[allocator]")
+{
+    int failAfter = 3;
+    int* ptr;
+
+    SECTION("To set the value for a debug allocator created with no failAfter counter") {
+        DebugAllocator<int> allocator;
+        allocator.failAfter(3);
+
+        for(size_t i = 0; i < failAfter; ++i) {
+            REQUIRE_NOTHROW(ptr = allocator.buy());
+            allocator.release(ptr);
+        }
+
+        REQUIRE_THROWS_AS(allocator.buy(), std::bad_alloc);
+    }
+    SECTION("To alter the value for an allocator with an already set failAfter counter") {
+        DebugAllocator<int> allocator(failAfter * 2);
+        allocator.failAfter(3);
+
+        for(size_t i = 0; i < failAfter; ++i) {
+            REQUIRE_NOTHROW(ptr = allocator.buy());
+            allocator.release(ptr);
+        }
+
+        REQUIRE_THROWS_AS(allocator.buy(), std::bad_alloc);
+    }
+}
