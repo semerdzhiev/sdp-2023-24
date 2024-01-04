@@ -13,6 +13,10 @@ target_sources(
 	PRIVATE
 		"Test-DynamicArray.cpp"
 		"Test-FixedSizeArray.cpp"
+		"Test-Tree.cpp"
+		"Test-TreeNode.cpp"
+		"Test-TreeNodeIterator.cpp"
+		"Test-TreeNodeOperations.cpp"
 )
 
 catch_discover_tests(unit-tests-containers)
