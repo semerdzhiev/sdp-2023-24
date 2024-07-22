@@ -1,0 +1,16 @@
+# This is a comment. Its contents must be skipped.
+XYZ
+ab
+ba
+
+# The next four lines define the same word
+aBcD
+abcd
+ABCD
+abcd
+
+# The following entries are incorrect
+This is an incorrect entry, it has spaces.
+ spaceOnTheLeft
+spaceOnTheRight 
+an0ther1ncorrectW0rd
